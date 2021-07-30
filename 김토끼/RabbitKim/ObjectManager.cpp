@@ -83,8 +83,11 @@ void ObjectManager::Initialize()
 	pKingEnemy = ObjectFactory<KingEnemy>::CreateObject();
 	*/
 
-	InsertList<Enemy>(128, "Enemy");
-
+	InsertList<Enemy> ( 128, "Enemy" );
+	InsertList<Bullet> ( 128, "Bullet" );
+	InsertList<StarBullet> ( 128, "StarBullet" );
+	InsertList<KingBullet> ( 128, "KingBullet" );
+	InsertList<KingEnemy> ( 1, "KingEnemy" );
 
 	m_BulletID = BULLETID_BULLET;
 
@@ -146,25 +149,7 @@ void ObjectManager::Update()
 		}
 	}
 	*/
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	 
 
 	for (int i = 0; i < 128; ++i)
 	{

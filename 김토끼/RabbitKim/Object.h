@@ -5,6 +5,7 @@ class Object
 {
 protected:
 	Transform TransInfo;
+	vector<char*> Texture;
 	char* Texture[8][8];
 	int Motion;
 	int Motion_Max;
@@ -13,6 +14,8 @@ protected:
 	int Damage;
 	bool Active;
 	int Color;
+
+	string strKey;
 public:
 	virtual void Initialize()PURE;
 	virtual int Update()PURE;
@@ -22,6 +25,8 @@ public:
 	void Attack(const int& _damage ) { HP -= _damage; }
 	int GetHP() const { return HP; }
 	int GetDamage() const { return Damage; }
+
+	string GetKey() { return strKey; }
 public:
 	/*
 	void SetPosition(float _x, float _y)
@@ -40,6 +45,7 @@ public:
 	bool GetActive() const { return Active; }
 	void SetActive(const bool& _Active) { Active = _Active; }
 
+	 
 public:
 	Object();
 	virtual ~Object();

@@ -19,6 +19,8 @@ Player::~Player()
 
 void Player::Initialize()
 {
+
+
 	//±âº»
 	Texture[0][0] = (char*)"  /)/)";
 	Texture[0][1] = (char*)" (> 3<)";

@@ -17,13 +17,14 @@ private:
 
 	map<string, list<Object*>> ObjectList;
 
+	/*
 	Object* pPlayer;
 	Object* pKingEnemy;
 	Object* ObjectList[OBJID_MAX][128];
 	Object* BulletList[BULLETID_MAX][128];
 	Object* KingEnemyBullet[128];
-	
-
+	*/
+	  
 	BULLETID m_BulletID;
 	OBJID m_ObjID;
 
@@ -39,6 +40,7 @@ public:
 	void AddScore(const int& _score ) { Score += _score; }
 
 public:
+	void AddObject(Object* _pObject);
 	void Initialize();
 	void Update();
 	void Render();

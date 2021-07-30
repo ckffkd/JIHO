@@ -28,7 +28,8 @@ void ObjectManager::AddObject(Object* _pObject)
 {
 	//** 지금 전달받은 매개변수의 키값을 확인한다.
 	//** 만약 기존에 키값이 존재 하지 않는다면 end() 를 반환 함.
-	map<string, list<Object*>>::iterator iter = ObjectList.find(_pObject->Getkey());
+	map<string, list<Object*>>::iterator iter = ObjectList.find(_pObject->GetKey() );
+
 
 	//** iter가 ObjectList.end()와 같다면 기존에 키값이 존재하지 않음.
 	//** 만약 존재하지 않는다면....
@@ -41,8 +42,9 @@ void ObjectManager::AddObject(Object* _pObject)
 		TempList.push_back(_pObject);
 
 		//** 오브젝트를 추가한 리스트를 오브젝트의 키값으로 map에 추가. 
-		ObjectList.insert(make_pair(_pObject->Getkey(), TempList));
+		ObjectList.insert(make_pair(_pObject->GetKey(), TempList));
 	}
+
 
 	//** 만약 기존에 동일한 키값이 존재 한다면....
 	else
@@ -51,21 +53,39 @@ void ObjectManager::AddObject(Object* _pObject)
 
 }
 
+template <typename T>
+void ObjectManager::InsertList(const int& _count, const string& _strKey)
+{
+	list<Object*> pTempList;
+
+	for (int i = 0; i < _count; ++i)
+	{
+		Object* pObject = ObjectFactory<T>::CreateObject();
+		pTempList.push_back(pObject);
+	}
+
+	ObjectList.insert(make_pair(_strKey, pTempList));
+}
+
+
 void ObjectManager::Initialize()
 {
-
-
+	/*
 	for (int i = 0; i < 128; ++i)
 	{
-		ObjectList[OBJID_ENEMY][i] = ObjectFactory<Enemy>::CreateObject();
+		[OBJID_ENEMY][i] = ObjectFactory<Enemy>::CreateObject();
+
 		BulletList[BULLETID_BULLET][i] = ObjectFactory<Bullet>::CreateObject();
 		BulletList[BULLETID_STAR_BULLET][i] = ObjectFactory<StarBullet>::CreateObject();
 		KingEnemyBullet[i] = ObjectFactory<KingBullet>::CreateObject();
 	}
 
 	pKingEnemy = ObjectFactory<KingEnemy>::CreateObject();
+	*/
 
-	
+	InsertList<Enemy>(128, "Enemy");
+
+
 	m_BulletID = BULLETID_BULLET;
 
 	Time = (ULONG)GetTickCount64();
@@ -92,7 +112,26 @@ void ObjectManager::Update()
 		}
 
 
+
+
 	
+	for (map<string, list<Object*>>::iterator iter = ObjectList.begin();
+			iter != ObjectList.end(); ++iter)
+	{
+		for (list<Object*>::iterator iter2 = iter->second.begin(); 
+			iter2 != iter->second.end(); ++iter2)
+		{
+			int iResult = 0;
+
+			if ((*iter2)->GetActive())
+				iResult = (*iter2)->Update();
+
+			if (iResult == 1)
+				(*iter2)->SetActive(false);
+		}
+	}
+	
+	/*
 	for (int i = 0; i < OBJID_MAX; ++i)
 	{
 		for (int j = 0; j < 128; ++j)
@@ -106,6 +145,24 @@ void ObjectManager::Update()
 				ObjectList[i][j]->SetActive(false);
 		}
 	}
+	*/
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -303,6 +360,58 @@ void ObjectManager::Update()
 
 	pPlayer->Update();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void ObjectManager::Render()
 {

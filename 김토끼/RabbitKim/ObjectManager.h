@@ -34,13 +34,17 @@ private:
 	bool BulletCheck;
 	bool KingEnemyCheck;
 public:
-	void SetPlayer(Object* _pPlayer) { pPlayer = _pPlayer; }
+	//void SetPlayer(Object* _pPlayer) { pPlayer = _pPlayer; }
 
 	int GetScore() const { return Score; }
 	void AddScore(const int& _score ) { Score += _score; }
 
 public:
 	void AddObject(Object* _pObject);
+
+	template <typename T>
+	void InsertList(const int& _count, const string& _strKey);
+
 	void Initialize();
 	void Update();
 	void Render();

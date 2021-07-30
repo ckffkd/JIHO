@@ -61,9 +61,6 @@
     <Filter Include="소스 파일\99.Manager\ObjectFactory">
       <UniqueIdentifier>{7b01852b-cb2e-44bf-95dd-e9a092cc9989}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\99.Manager\CollisionManager">
-      <UniqueIdentifier>{3f29f7c2-755d-40ec-8756-a57c4c0d770e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01.Object\Asteroid">
       <UniqueIdentifier>{3347424a-d368-4b3f-abd4-80c2f18a1958}</UniqueIdentifier>
     </Filter>
@@ -90,6 +87,9 @@
     </Filter>
     <Filter Include="소스 파일\01.Object\KingBullet">
       <UniqueIdentifier>{19f2b330-c5ea-4949-a002-80e10d757cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Manager\DoubleBuffer\CollisionManager">
+      <UniqueIdentifier>{3f29f7c2-755d-40ec-8756-a57c4c0d770e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +225,7 @@
       <Filter>소스 파일\99.Manager\ObjectFactory</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>소스 파일\99.Manager\CollisionManager</Filter>
+      <Filter>소스 파일\99.Manager\DoubleBuffer\CollisionManager</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
       <Filter>소스 파일\01.Object\Asteroid</Filter>

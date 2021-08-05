@@ -4,7 +4,7 @@
 #include <vector>
 #include <list>
 #include <map>
-#include <fstream>
+
 
 using namespace std;
 
@@ -23,6 +23,7 @@ list<StudentInfo> StudentList;
 
 
 void LoadDate();
+void ScoreSwap(StudentInfo& _A, StudentInfo& _B);
 
 int main(void)
 {
@@ -60,7 +61,7 @@ int main(void)
 
 		switch (Choice)
 		{
-		case 1:
+		case 1://전체
 			for (list<StudentInfo>::iterator iter = StudentList.begin();
 				iter != StudentList.end(); ++iter)
 			{
@@ -71,23 +72,47 @@ int main(void)
 			}
 			break;
 			
-		case 2:
-			for (list<StudentInfo>::iterator iter = StudentList.begin();
-				iter != StudentList.end(); ++iter)
+		case 2://국어
+			for (list<StudentInfo>::iterator iter = StudentList.begin(); iter != StudentList.end(); ++iter)
 			{
-				cout << iter->Index << " : " << iter->Name << endl;
-				cout << "국어 점수 : " << iter->Kor << endl;
+				for (list<StudentInfo>::iterator iter2 = iter; iter2 != StudentList.end(); ++iter2)
+				{
+					if ((*iter).Kor < (*iter2).Kor)
+					{
+						ScoreSwap((*iter), (*iter2));
+					}
+				}
+
+				cout << iter->Name << " : " << iter->Kor << endl;
 			}
-
 			break;
 
-		case 3:
-			
-
+		case 3://영어
+			for (list<StudentInfo>::iterator iter = StudentList.begin(); iter != StudentList.end(); ++iter)
+			{
+				for (list<StudentInfo>::iterator iter2 = iter; iter2 != StudentList.end(); ++iter2)
+				{
+					if ((*iter).Eng < (*iter2).Eng)
+					{
+						ScoreSwap((*iter), (*iter2));
+					}
+				}
+				cout << iter->Name << " : " << iter->Eng << endl;
+			}
 			break;
 
-		case 4:
-			
+		case 4://수학
+			for (list<StudentInfo>::iterator iter = StudentList.begin(); iter != StudentList.end(); ++iter)
+			{
+				for (list<StudentInfo>::iterator iter2 = iter; iter2 != StudentList.end(); ++iter2)
+				{
+					if ((*iter).Math < (*iter2).Math)
+					{
+						ScoreSwap((*iter), (*iter2));
+					}
+				}
+				cout << iter->Name << " : " << iter->Math << endl;
+			}
 			break;
 
 
@@ -97,11 +122,6 @@ int main(void)
 		}
 		system("pause");
 	}
-
-
-
-
-
 
 
 	return 0;
@@ -135,3 +155,12 @@ void LoadDate()
 	//** 파일을 닫는다.
 	fclose(pFileCSV);
 }
+
+void ScoreSwap(StudentInfo& _A, StudentInfo& _B)
+{
+	StudentInfo Temp = _A; 
+
+	_A = _B; 
+	_B = Temp;
+}
+

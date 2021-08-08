@@ -21,6 +21,7 @@ struct StudentInfo
 
 
 list<StudentInfo*> StudentList;
+map<string, list<StudentInfo*>> ScoreList;
  
 void LoadDate();
 void Output();
@@ -35,7 +36,7 @@ int main(void)
 	
 	while (true)
 	{
-		system("cls");
+		//system("cls");
 
 		cout << "1. 국어" << endl;
 		cout << "2. 영어" << endl;
@@ -50,7 +51,7 @@ int main(void)
 		system("cls");
 
 		switch (num)
-		{ 
+		{
 		case 1:
 			for (list<StudentInfo*>::iterator iter = SortList.begin();
 				iter != SortList.end(); ++iter)
@@ -66,6 +67,8 @@ int main(void)
 					}
 				}
 				cout << (*iter)->Name << " : " << (*iter)->Kor << endl;
+				list<StudentInfo*> TempList(SortList);
+				ScoreList.insert(make_pair("Kor", TempList));
 			}
 			break;
 
@@ -84,6 +87,8 @@ int main(void)
 					}
 				}
 				cout << (*iter)->Name << " : " << (*iter)->Eng << endl;
+				list<StudentInfo*> TempList(SortList);
+				ScoreList.insert(make_pair("Kor", TempList));
 			}
 			break;
 
@@ -102,6 +107,8 @@ int main(void)
 					}
 				}
 				cout << (*iter)->Name << " : " << (*iter)->Math << endl;
+				list<StudentInfo*> TempList(SortList);
+				ScoreList.insert(make_pair("Kor", TempList));
 			}
 			break;
 
@@ -114,14 +121,28 @@ int main(void)
 			break;
 		}
 		system("pause");
+
+		//맵... 엥? 아 오키오키 엥?? 오키 아님...ㅎ ㅏ ....
+
+		for (map<string, list<StudentInfo*>>::iterator iter = ScoreList.begin();
+			iter != ScoreList.end(); ++iter)
+		{
+			cout << "*   " << iter->first << "   *" << endl;
+
+			for (list<StudentInfo*>::iterator iter2 = iter->second.begin();
+				iter2 != iter->second.end(); ++iter2)
+			{
+				cout << (*iter2)->Index << " : " << (*iter2)->Name << endl;
+				cout << "국어 점수 : " << (*iter2)->Kor << endl;
+				cout << "영어 점수 : " << (*iter2)->Eng << endl;
+				cout << "수학 점수 : " << (*iter2)->Math << endl << endl;
+			}
+			cout << "********************" << endl << endl;
+		}
+
 	}
-
-
-	//맵...은 이따가....
-	 
-
-
-
+	
+	
 	return 0;
 }
 

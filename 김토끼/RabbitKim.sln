@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RabbitKim", "RabbitKim\Rabb
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{98559308-E348-4344-AD37-766426BD5BFE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjectPool", "ObjectPool\ObjectPool.vcxproj", "{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{98559308-E348-4344-AD37-766426BD5BFE}.Release|x64.Build.0 = Release|x64
 		{98559308-E348-4344-AD37-766426BD5BFE}.Release|x86.ActiveCfg = Release|Win32
 		{98559308-E348-4344-AD37-766426BD5BFE}.Release|x86.Build.0 = Release|Win32
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Debug|x64.ActiveCfg = Debug|x64
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Debug|x64.Build.0 = Debug|x64
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Debug|x86.ActiveCfg = Debug|Win32
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Debug|x86.Build.0 = Debug|Win32
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Release|x64.ActiveCfg = Release|x64
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Release|x64.Build.0 = Release|x64
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Release|x86.ActiveCfg = Release|Win32
+		{569B3CAD-CFDD-4080-AD79-2A0BD7AF7EDE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

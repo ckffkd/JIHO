@@ -30,10 +30,7 @@ struct ObjectPool
 };
 
 bool check = false;
- 
-//int Count = 0;
-
-//void InputKey(ObjectPool* _pool);
+int Count = 0;
 
 int main(void)
 {
@@ -42,14 +39,14 @@ int main(void)
 
 	int i = 0;
 	 
-
+	/*
 	for (list<ObjectPool*>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
 	{
-		(*iter)->Active = false;
-		(*iter)->Key = i;
-		(*iter)->Value = 0;
-	}
+		ObjectList.push_back(new ObjectPool(i, 0, false));
+		 
+	} //오~오오오오~~~나는 바보 나는 바보~~~
+	*/
 
 	/*
 	for (int i = 0; i < 128; ++i)
@@ -72,15 +69,27 @@ int main(void)
 
 		if (check)
 		{
-			//for (int i = 0; i < 128; ++i)
-			for (list<ObjectPool*>::iterator iter = ObjectList.begin();
-				iter != ObjectList.end(); ++iter)
+			list<ObjectPool*>::iterator iter = ObjectList.begin();
+
+			if (ObjectList.empty())
 			{
-				if (!(*iter)->Active)
-				{
-					(*iter)->Active = true;
-					(*iter)->Value = 0;
-					break;
+				ObjectList.push_back(
+					new ObjectPool(Count++, 0, false)); 
+			}
+
+			else
+			{
+			//for (int i = 0; i < 128; ++i)
+				for (list<ObjectPool*>::iterator iter = ObjectList.begin();
+				iter != ObjectList.end(); ++iter)
+				{  
+					if (!(*iter)->Active)
+					{
+						(*iter)->Active = true;
+						(*iter)->Value = 0;
+						(*iter)->Key = 0;
+						break;
+					} 
 				}
 			}
 		}
@@ -88,7 +97,7 @@ int main(void)
 		for (list<ObjectPool*>::iterator iter = ObjectList.begin();
 			iter != ObjectList.end(); ++iter)
 		{
-			if ((*iter))
+			if ((*iter)->Active) //머 이래 빼먹은게 많노
 			{
 				(*iter)->Value++;
 				cout << (*iter)->Key << " : "
@@ -96,8 +105,7 @@ int main(void)
 
 				if ((*iter)->Value >= 50)
 				{
-					(*iter)->Active = false;
-
+					(*iter)->Active = false; 
 				}
 			}
 		}
@@ -110,7 +118,8 @@ int main(void)
 	{
 		SAFE_DELETE(*iter);
 	}
-
+	ObjectList.clear();
+	
 
 	return 0;
 }

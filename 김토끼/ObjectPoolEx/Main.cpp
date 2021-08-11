@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <list>
 #include <map>
-
+#include <string>
 
 using namespace std;
 
@@ -13,10 +13,9 @@ struct Vector3
 	Vector3() {};
 
 	Vector3(float _x, float _y)
-		:x(_x), y(_y), z(0) {};
+		:x(_x), y(_y) {};
 
-	Vector3(float _x, float _y, float _z)
-		:x(_x), y(_y), z(_z) {};
+	
 };
 
 
@@ -30,35 +29,34 @@ struct Transform
 class Object
 {
 private:
-	int Key;
+	//int Key;
 	string Texture;
 	Transform TransInfo;
 public:
 	void Initialize()
-	{
-		//Key = 0;
-		//(2, 15, ""); 아 김토끼 만들때 많이 했자나
-		Texture = "◎";
-		TransInfo.Position = Vector3(2, 15); 
-		TransInfo.Scale = Vector3(strlen("◎"), 1);
+	{ 
+		Texture = "->";
+		TransInfo.Position = Vector3(4.0f, 15.0f); 
+		
 	}
 
 	int Update()
 	{
-		TransInfo.Position.x += 1.5f;
+		TransInfo.Position.x++;
 
-		if (TransInfo.Position.x >= (120 - TransInfo.Scale.x))
+		if (TransInfo.Position.x >= 120)//아
 			return 1;
 
 		return 0;
 	}
 
-	void Output(float _x, float _y, string _str)
+	void Render()
 	{
-		COORD Pos = { _x, _y };
+		COORD Pos = { TransInfo.Position.x, TransInfo.Position.y };
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
-		cout << _str << endl;
+		cout << Texture << endl;
 	}
+
 public:
 	Object() { }
 	~Object() { }
@@ -105,8 +103,7 @@ int main(void)
 				//** 5개의 오브젝트를 추가 생성한 후...
 				for (int i = 0; i < 5; ++i)
 				{
-					DesableList.push_back(
-						new Object);
+					DesableList.push_back(new Object);
 				}
 			}
 
@@ -130,18 +127,17 @@ int main(void)
 
 
 		//** Render 
-		cout << "EnableList" << endl;
+		//cout << "EnableList" << endl;
 		for (list<Object*>::iterator iter = EnableList.begin();
-			iter != EnableList.end();/* 증감문은 아래쪽에 */)
+			iter != EnableList.end();)
 		{
-			//** Value 값 증가
-			(*iter)->Output();
+			int iResult = (*iter)->Update();
+			(*iter)->Render();
 
 			//** 콘솔창에 출력
 			//cout << (*iter)->Key << " : " << (*iter)->Value << endl;
-
-			//** 출력된 오브젝트의 Value 값이 일정 이상이 된다면....
-			if ((*iter)->Value >= 50)
+			 
+			if (iResult == 1)
 			{
 				//** 현재 리스트에서 DesableList 로 옴겨놓고
 				DesableList.push_back((*iter));
@@ -153,15 +149,17 @@ int main(void)
 				++iter; //** 오브젝트가 삭제되지 않을때 증가시킴..
 		}
 
+		string Buffer = "DesableList : " + to_string(DesableList.size());
+		Output(10, 1, Buffer);
 
-
-		//cout << "DesableList" << endl;
+		/*
 		for (list<Object*>::iterator iter = DesableList.begin();
 			iter != DesableList.end(); ++iter)
 		{
 			//** 콘솔창에 출력
 			cout << (*iter)->Key << endl;
 		}
+		*/
 
 		Sleep(50);
 	}

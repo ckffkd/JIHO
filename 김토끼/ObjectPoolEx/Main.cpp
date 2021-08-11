@@ -33,8 +33,6 @@ private:
 	int Key;
 	Transform TransInfo;
 public:
-	int Count;
-public:
 	void Initialize()
 	{
 		Key = 0;
@@ -56,11 +54,9 @@ public:
 
 bool check = false;
 int Count = 0;
-
-
-void Output(float _x, float _y, string _str);
-
-
+ 
+void Output(float _x, float _y, string _str); //string string string,.,.,.
+ 
 int main(void)
 {
 	//** 실제 사용한 오브젝트 (랜더링 될 오브젝트 리스트)
@@ -77,9 +73,7 @@ int main(void)
 
 		//** 총알이 발사될 위치.
 		Output(2, 15, "◎");
-
-
-
+		 
 
 		check = false;
 
@@ -117,10 +111,7 @@ int main(void)
 			DesableList.pop_front();
 		}
 
-
-
-
-
+		 
 
 		//** 오류내용 수정.
 
@@ -185,8 +176,7 @@ int main(void)
 
 	return 0;
 }
-
-
+ 
 
 
 void Output(float _x, float _y, string _str)

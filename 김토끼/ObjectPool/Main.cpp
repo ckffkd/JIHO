@@ -69,12 +69,12 @@ int main(void)
 
 		if (check)
 		{
-			list<ObjectPool*>::iterator iter = ObjectList.begin();
+			//list<ObjectPool*>::iterator iter = ObjectList.begin();
 
 			if (ObjectList.empty())
 			{
 				ObjectList.push_back(
-					new ObjectPool(Count++, 0, false)); 
+					new ObjectPool(Count++, 0, false));
 			}
 
 			else

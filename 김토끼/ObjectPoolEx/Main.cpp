@@ -31,13 +31,26 @@ class Object
 {
 private:
 	int Key;
+	string Texture;
 	Transform TransInfo;
 public:
 	void Initialize()
 	{
-		Key = 0;
+		//Key = 0;
+		//(2, 15, ""); 아 김토끼 만들때 많이 했자나
+		Texture = "◎";
+		TransInfo.Position = Vector3(2, 15); 
+		TransInfo.Scale = Vector3(strlen("◎"), 1);
+	}
 
-		TransInfo.Position = Vector3();
+	int Update()
+	{
+		TransInfo.Position.x += 1.5f;
+
+		if (TransInfo.Position.x >= (120 - TransInfo.Scale.x))
+			return 1;
+
+		return 0;
 	}
 
 	void Output(float _x, float _y, string _str)
@@ -55,7 +68,7 @@ public:
 bool check = false;
 int Count = 0;
  
-void Output(float _x, float _y, string _str); //string string string,.,.,.
+void Output(float _x, float _y, string _str);
  
 int main(void)
 {
@@ -122,10 +135,10 @@ int main(void)
 			iter != EnableList.end();/* 증감문은 아래쪽에 */)
 		{
 			//** Value 값 증가
-			(*iter)->Value++;
+			(*iter)->Output();
 
 			//** 콘솔창에 출력
-			cout << (*iter)->Key << " : " << (*iter)->Value << endl;
+			//cout << (*iter)->Key << " : " << (*iter)->Value << endl;
 
 			//** 출력된 오브젝트의 Value 값이 일정 이상이 된다면....
 			if ((*iter)->Value >= 50)
@@ -142,7 +155,7 @@ int main(void)
 
 
 
-		cout << "DesableList" << endl;
+		//cout << "DesableList" << endl;
 		for (list<Object*>::iterator iter = DesableList.begin();
 			iter != DesableList.end(); ++iter)
 		{

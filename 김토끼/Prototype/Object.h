@@ -9,7 +9,7 @@ private:
 public:
 	void Initialize();
 	int Update();
-	void Render(int _n);
+	void Render();
 public:
 	//** 클론객체를 생성.
 	Object* Clone() { return new Object(*this); }

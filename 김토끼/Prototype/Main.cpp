@@ -23,23 +23,16 @@ void InitObject(string _Key)
 	}
 
 
-	// ** 원형객체를 정상적으로 참조했다면...
-	else
+	// ** 참조된 원형 객체의 복사본을 넘겨줌
+
+	for (int i = 0; i < 3; ++i)
 	{
-		int i = 0;
+		Object* pTempObj = pObj->Clone();
+		
+		pTempObj->Initialize();
+		pTempObj->SetIndex(i + 1);
 
-		// ** 참조된 원형 객체의 복사본을 넘겨줌
-		pObjList.push_back(pObj->Clone());
-
-		for (list<Object*>::iterator iter = pObjList.begin();
-			iter != pObjList.end(); ++iter)
-		{
-			// ** 그리고 본사본을 초기화함.
-			(*iter)->Initialize();
-
-			// ** 복사본의 인덱스값을 변경.
-			(*iter)->SetIndex(i + 1);
-		}
+		pObjList.push_back(pTempObj);
 	}
 }
 
@@ -51,12 +44,10 @@ int main(void)
 	//** 초기화
 	InitObject("Object");
 
-
-	int i = 0;
 	for (list<Object*>::iterator iter = pObjList.begin();
 		iter != pObjList.end(); ++iter)
 		if ((*iter))
-			(*iter)->Render(i);
+			(*iter)->Render();
 
 	//** 삭제
 	for (list<Object*>::iterator iter = pObjList.begin();
@@ -77,4 +68,3 @@ int main(void)
  * 출력 구문
  * 삭제
 ***********************/
-

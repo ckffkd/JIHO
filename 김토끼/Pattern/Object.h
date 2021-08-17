@@ -29,6 +29,9 @@ public:
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 		cout << str << endl;
 	}
+
+	Object* Clone() { return new Object(*this); }
+
 public:
 	Object() { }
 	Object(const Transform& _TransInfo) : TransInfo(_TransInfo) { }

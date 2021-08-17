@@ -21,6 +21,11 @@ private:
 	list<Object*> DesableList;
 
 public:
+	void Update();
+	void Render();
+	void Release();
+private:
 	ObjectpoolManager();
+public:
 	~ObjectpoolManager();
 };
